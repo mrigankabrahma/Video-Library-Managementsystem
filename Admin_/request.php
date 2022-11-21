@@ -22,7 +22,7 @@
 			background-color: black;
 			color: white;
 		}
-		
+
 		body {
 			background-image: url("images/1111.jpg");
 			background-repeat: no-repeat;
@@ -98,7 +98,7 @@
 </head>
 <body>
 <!--_________________sidenav_______________-->
-	
+
 	<div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
@@ -110,20 +110,17 @@
                 { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
                     echo "</br></br>";
 
-                    echo "Welcome ".$_SESSION['login_user']; 
+                    echo "Welcome ".$_SESSION['login_user'];
                 }
                 ?>
             </div><br><br>
 
- 
-  <div class="h"> <a href="books.php">Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue_info.php">Issue Information</a></div>
-  <div class="h"><a href="expired.php">Expired List</a></div>
+
+
 </div>
 
 <div id="main">
-  
+
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
 
@@ -155,7 +152,7 @@
 	<h3 style="text-align: center;">Request of Book</h3>
 
 	<?php
-	
+
 	if(isset($_SESSION['login_user']))
 	{
 		$sql= "SELECT student.username,roll,books.bid,name,authors,edition,status FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve =''";
@@ -172,7 +169,7 @@
 			echo "<table class='table table-bordered' >";
 			echo "<tr style='background-color: #6db6b9e6;'>";
 				//Table header
-				
+
 				echo "<th>"; echo "Username";  echo "</th>";
 				echo "<th>"; echo "Roll No";  echo "</th>";
 				echo "<th>"; echo "BID";  echo "</th>";
@@ -180,8 +177,8 @@
 				echo "<th>"; echo "Authors Name";  echo "</th>";
 				echo "<th>"; echo "Edition";  echo "</th>";
 				echo "<th>"; echo "Status";  echo "</th>";
-				
-			echo "</tr>";	
+
+			echo "</tr>";
 
 			while($row=mysqli_fetch_assoc($res))
 			{
@@ -193,7 +190,7 @@
 				echo "<td>"; echo $row['authors']; echo "</td>";
 				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";
-				
+
 				echo "</tr>";
 			}
 		echo "</table>";
@@ -204,7 +201,7 @@
 		?>
 		<br>
 			<h4 style="text-align: center;color: yellow;">You need to login to see the request.</h4>
-			
+
 		<?php
 	}
 
