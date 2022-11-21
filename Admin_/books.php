@@ -15,7 +15,7 @@
 			padding-left: 1000px;
 
 		}
-		
+
 		body {
   font-family: "Lato", sans-serif;
   transition: background-color .5s;
@@ -82,7 +82,7 @@
 </head>
 <body>
 	<!--_________________sidenav_______________-->
-	
+
 	<div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
@@ -94,19 +94,19 @@
                 { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
                     echo "</br></br>";
 
-                    echo "Welcome ".$_SESSION['login_user']; 
+                    echo "Welcome ".$_SESSION['login_user'];
                 }
                 ?>
             </div><br><br>
 
- <div class="h"> <a href="add.php">Add Books</a> </div> 
+ <div class="h"> <a href="add.php">Add Books</a> </div>
   <div class="h"> <a href="request.php">Book Request</a></div>
   <div class="h"> <a href="issue_info.php">Issue Information</a></div>
   <div class="h"><a href="expired.php">Expired List</a></div>
 </div>
 
 <div id="main">
-  
+
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
 
@@ -127,14 +127,14 @@ function closeNav() {
 
 	<div class="srch">
 		<form class="navbar-form" method="post" name="form1">
-			
+
 				<input class="form-control" type="text" name="search" placeholder="search books.." required="">
 				<button style="background-color: #6db6b9e6;" type="submit" name="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
 		</form>
 		<form class="navbar-form" method="post" name="form1">
-			
+
 				<input class="form-control" type="text" name="bid" placeholder="Enter Book ID" required="">
 				<button style="background-color: #6db6b9e6;" type="submit" name="submit1" class="btn btn-default">Delete
 				</button>
@@ -164,7 +164,7 @@ function closeNav() {
 				echo "<th>"; echo "Status";  echo "</th>";
 				echo "<th>"; echo "Quantity";  echo "</th>";
 				echo "<th>"; echo "Department";  echo "</th>";
-			echo "</tr>";	
+			echo "</tr>";
 
 			while($row=mysqli_fetch_assoc($q))
 			{
@@ -197,7 +197,7 @@ function closeNav() {
 				echo "<th>"; echo "Status";  echo "</th>";
 				echo "<th>"; echo "Quantity";  echo "</th>";
 				echo "<th>"; echo "Department";  echo "</th>";
-			echo "</tr>";	
+			echo "</tr>";
 
 			while($row=mysqli_fetch_assoc($res))
 			{
@@ -223,7 +223,7 @@ function closeNav() {
 					<script type="text/javascript">
 						alert("Delete Successful.");
 					</script>
-				<?
+				<?php
 			}
 			else
 			{
@@ -231,10 +231,10 @@ function closeNav() {
 					<script type="text/javascript">
 						alert("Please Login First.");
 					</script>
-				<?
+				<?php
 			}
 		}
-		
+
 
 	?>
 </div>

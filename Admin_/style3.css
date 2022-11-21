@@ -1,8 +1,8 @@
-/* 
+/*
 html5doctor.com Reset Stylesheet
 v1.6.1
 Last Updated: 2010-09-17
-Author: Richard Clark - http://richclarkdesign.com 
+Author: Richard Clark - http://richclarkdesign.com
 Twitter: @rich_clark
 */
 
@@ -15,7 +15,7 @@ b, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
+article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video {
 margin:0;
@@ -29,10 +29,11 @@ background:transparent;
 
 body {
 line-height:1;
+
 }
 
 article,aside,details,figcaption,figure,
-footer,header,hgroup,menu,nav,section { 
+footer,header,hgroup,menu,nav,section {
 display:block;
 }
 
@@ -68,7 +69,7 @@ text-decoration:none;
 /* change colours to suit your needs */
 mark {
 background-color:#ff9;
-color:#000; 
+color:#000;
 font-style:italic;
 font-weight:bold;
 }
@@ -91,7 +92,7 @@ border-spacing:0;
 hr {
 display:block;
 height:1px;
-border:0; 
+border:0;
 border-top:1px solid #cccccc;
 margin:1em 0;
 padding:0;
@@ -111,22 +112,25 @@ vertical-align:middle;
 }
 header
 {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	height: 130px;
-	width: 1340px;
-	background-color: black;
+	width: 1499px;
+	background-color: #6e5359;
 	padding: 10px;
+	opacity: .6;
+
 }
 section
 {
-	height: 550px;
+	height: 1200px;
 
-	width: 1361px;
-	background-color: grey;
+	width: 1519px;
+	background-image: url("images/Blog-Video-Collage.jpg");
 }
 footer
 {
-	
-	width: 1361px;
+
+	width: 1519px;
 	background-color: black;
 }
 .logo
@@ -135,7 +139,7 @@ footer
 	padding-left: 20px;
 
 }
-.logo img 
+.logo img
 {
 	padding-left: 80px;
 }
@@ -151,7 +155,7 @@ li a
 	word-spacing: 30px;
 	padding: 20px;
 }
-nav li 
+nav li
 {
 	display: inline-block;
 	line-height: 80px;
@@ -166,21 +170,39 @@ section .sec_img
 .box
 {
 	height: 300px;
+	width: 619px;
+
+ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: black;
+	margin:70px 20px;
+	float:right;
+}
+.boxvideo
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	height: 300px;
 	width: 450px;
 	background-color: #030002;
-	margin: 70px auto;
 	opacity: .6;
 	color: white;
-}
+	margin:113px 60px;
+	border-width: 120px;
+	float:left;
 
+}
+.row{
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	 border-spacing: 10px;
+}
+.column{
+	display: table-cell;background-color: #030002;
+	opacity: .6;
+}
 /*--------------------------------st_login-----------------------------*/
 
-.log_img
-{
-	height: 650px;
-	margin-top: 0px;
-	background-image: url("images/3.jpg");
-}
+
 .box1
 {
 	height: 450px;
