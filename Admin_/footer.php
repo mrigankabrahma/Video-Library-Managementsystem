@@ -10,9 +10,14 @@
 	<style type="text/css">
 	footer
 	{
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		position: fixed;
+		bottom:0;
 		height: 200px;
-		width: 1361px;
-		background-color: black;
+		width: 1519px;
+		margin-bottom: 0px;
+		opacity: .6;
+
 	}
 		.fa
 		{
