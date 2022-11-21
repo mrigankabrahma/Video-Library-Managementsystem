@@ -22,7 +22,7 @@
 			background-color: black;
 			color: white;
 		}
-		
+
 		body {
 			background-image: url("images/aa.jpg");
 			background-repeat: no-repeat;
@@ -108,7 +108,7 @@ th,td
 </head>
 <body>
 <!--_________________sidenav_______________-->
-	
+
 	<div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
@@ -120,20 +120,17 @@ th,td
                 { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
                     echo "</br></br>";
 
-                    echo "Welcome ".$_SESSION['login_user']; 
+                    echo "Welcome ".$_SESSION['login_user'];
                 }
                 ?>
             </div><br><br>
 
- 
-  <div class="h"> <a href="books.php">Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue_info.php">Issue Information</a></div>
-  <div class="h"><a href="expired.php">Expired List</a></div>
+
+  
 </div>
 
 <div id="main">
-  
+
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
 
@@ -159,11 +156,11 @@ th,td
       {
         $sql="SELECT student.username,roll,books.bid,name,authors,edition,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='Yes' ORDER BY `issue_book`.`return` ASC";
         $res=mysqli_query($db,$sql);
-        
-        
+
+
         echo "<table class='table table-bordered' style='width:100%;' >";
         //Table header
-        
+
         echo "<tr style='background-color: #6db6b9e6;'>";
         echo "<th>"; echo "Username";  echo "</th>";
         echo "<th>"; echo "Roll No";  echo "</th>";
@@ -174,7 +171,7 @@ th,td
         echo "<th>"; echo "Issue Date";  echo "</th>";
         echo "<th>"; echo "Return Date";  echo "</th>";
 
-      echo "</tr>"; 
+      echo "</tr>";
       echo "</table>";
 
        echo "<div class='scroll'>";
@@ -188,7 +185,7 @@ th,td
           $var='<p style="color:yellow; background-color:red;">EXPIRED</p>';
 
           mysqli_query($db,"UPDATE issue_book SET approve='$var' where `return`='$row[return]' and approve='Yes' limit $c;");
-          
+
           echo $d."</br>";
         }
 
@@ -205,7 +202,7 @@ th,td
       }
     echo "</table>";
         echo "</div>";
-       
+
       }
       else
       {

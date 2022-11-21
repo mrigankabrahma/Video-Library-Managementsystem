@@ -15,7 +15,7 @@
 			padding-left: 1000px;
 
 		}
-		
+
 		body {
   background-color: #024629;
   font-family: "Lato", sans-serif;
@@ -96,7 +96,7 @@
 </head>
 <body>
 	<!--_________________sidenav_______________-->
-	
+
 	<div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
@@ -108,14 +108,14 @@
                 { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
                     echo "</br></br>";
 
-                    echo "Welcome ".$_SESSION['login_user']; 
+                    echo "Welcome ".$_SESSION['login_user'];
                 }
                 ?>
             </div><br><br>
 
- <div class="h"> <a href="add.php">Add Books</a> </div> 
-  <div class="h"> <a href="delete.php">Delete Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
+ <div class="h"> <a href="add.php">Add Video</a> </div>
+  <div class="h"> <a href="delete.php">Delete Video</a></div>
+  <div class="h"> <a href="request.php">Video Request</a></div>
   <div class="h"> <a href="issue_info.php">Issue Information</a></div>
 </div>
 
@@ -123,9 +123,9 @@
   <span style="font-size:30px;cursor:pointer; color: black;" onclick="openNav()">&#9776; open</span>
   <div class="container" style="text-align: center;">
     <h2 style="color:black; font-family: Lucida Console; text-align: center"><b>Add New Books</b></h2>
-    
+
     <form class="book" action="" method="post">
-        
+
         <input type="text" name="bid" class="form-control" placeholder="Book id" required=""><br>
         <input type="text" name="name" class="form-control" placeholder="Book Name" required=""><br>
         <input type="text" name="authors" class="form-control" placeholder="Authors Name" required=""><br>
