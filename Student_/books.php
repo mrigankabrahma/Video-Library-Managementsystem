@@ -3,7 +3,6 @@
   include "navbar.php";
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,7 @@
 			padding-left: 1000px;
 
 		}
-		
+
 		body {
   font-family: "Lato", sans-serif;
   transition: background-color .5s;
@@ -83,7 +82,7 @@
 </head>
 <body>
 	<!--_________________sidenav_______________-->
-	
+
 	<div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
@@ -95,59 +94,34 @@
                 { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
                     echo "</br></br>";
 
-                    echo "Welcome ".$_SESSION['login_user']; 
+                    echo "Welcome ".$_SESSION['login_user'];
                 }
                 ?>
             </div><br><br>
 
- 
-  <div class="h"> <a href="books.php">Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue_info.php">Issue Information</a></div>
-  <div class="h"><a href="expired.php">Expired List</a></div>
+
 </div>
 
-<div id="main">
-  
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
 
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "300px";
-  document.getElementById("main").style.marginLeft = "300px";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-  document.body.style.backgroundColor = "white";
-}
-</script>
-	<!--___________________search bar________________________-->
 
 	<div class="srch">
 		<form class="navbar-form" method="post" name="form1">
-			
-				<input class="form-control" type="text" name="search" placeholder="search books.." required="">
+
+				<input class="form-control" type="text" name="search" placeholder="search videos.." required="">
 				<button style="background-color: #6db6b9e6;" type="submit" name="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
 		</form>
-	</div>
-	<!--___________________request book__________________-->
-	<div class="srch">
 		<form class="navbar-form" method="post" name="form1">
-			
-				<input class="form-control" type="text" name="bid" placeholder="Enter Book ID" required="">
-				<button style="background-color: #6db6b9e6;" type="submit" name="submit1" class="btn btn-default">Request
+
+				<input class="form-control" type="text" name="bid" placeholder="Enter Video ID" required="">
+				<button style="background-color: #6db6b9e6;" type="submit" name="submit1" class="btn btn-default">Delete
 				</button>
 		</form>
 	</div>
 
-
-	<h2>List Of Books</h2>
+	<h2>List Of Videos</h2>
 	<?php
 
 		if(isset($_POST['submit']))
@@ -165,23 +139,19 @@ function closeNav() {
 				//Table header
 				echo "<th>"; echo "ID";	echo "</th>";
 				echo "<th>"; echo "Book-Name";  echo "</th>";
-				echo "<th>"; echo "Authors Name";  echo "</th>";
-				echo "<th>"; echo "Edition";  echo "</th>";
+
+
 				echo "<th>"; echo "Status";  echo "</th>";
-				echo "<th>"; echo "Quantity";  echo "</th>";
-				echo "<th>"; echo "Department";  echo "</th>";
-			echo "</tr>";	
+
+			echo "</tr>";
 
 			while($row=mysqli_fetch_assoc($q))
 			{
 				echo "<tr>";
-				echo "<td>"; echo $row['bid']; echo "</td>";
+				echo "<td>"; echo $row['vid']; echo "</td>";
 				echo "<td>"; echo $row['name']; echo "</td>";
-				echo "<td>"; echo $row['authors']; echo "</td>";
-				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";
-				echo "<td>"; echo $row['quantity']; echo "</td>";
-				echo "<td>"; echo $row['department']; echo "</td>";
+
 
 				echo "</tr>";
 			}
@@ -197,50 +167,44 @@ function closeNav() {
 			echo "<tr style='background-color: #6db6b9e6;'>";
 				//Table header
 				echo "<th>"; echo "ID";	echo "</th>";
-				echo "<th>"; echo "Book-Name";  echo "</th>";
-				echo "<th>"; echo "Authors Name";  echo "</th>";
-				echo "<th>"; echo "Edition";  echo "</th>";
+				echo "<th>"; echo "Video-Name";  echo "</th>";
 				echo "<th>"; echo "Status";  echo "</th>";
-				echo "<th>"; echo "Quantity";  echo "</th>";
-				echo "<th>"; echo "Department";  echo "</th>";
-			echo "</tr>";	
+
+			echo "</tr>";
 
 			while($row=mysqli_fetch_assoc($res))
 			{
 				echo "<tr>";
-				echo "<td>"; echo $row['bid']; echo "</td>";
+				echo "<td>"; echo $row['vid']; echo "</td>";
 				echo "<td>"; echo $row['name']; echo "</td>";
-				echo "<td>"; echo $row['authors']; echo "</td>";
-				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";
-				echo "<td>"; echo $row['quantity']; echo "</td>";
-				echo "<td>"; echo $row['department']; echo "</td>";
+
 
 				echo "</tr>";
 			}
 		echo "</table>";
 		}
-
 		if(isset($_POST['submit1']))
 		{
 			if(isset($_SESSION['login_user']))
 			{
-				mysqli_query($db,"INSERT INTO issue_book Values('$_SESSION[login_user]', '$_POST[bid]', '', '', '');");
+				mysqli_query($db,"DELETE from books where bid = '$_POST[vid]'; ");
 				?>
 					<script type="text/javascript">
-						window.location="request.php"
+						alert("Delete Successful.");
 					</script>
 				<?php
 			}
 			else
 			{
-				?>
+							?>
 					<script type="text/javascript">
-						alert("You must login to Request a book");
+						alert("Please Login First.");
 					</script>
 				<?php
 			}
 		}
+
 
 	?>
 </div>

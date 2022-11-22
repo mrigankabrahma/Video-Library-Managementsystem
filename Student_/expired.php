@@ -159,34 +159,54 @@ th,td
       {
         ?>
 
-      <div style="float: left; padding-left:  5px; padding-top: 20px;">
+      <div style="float: left; padding: 25px;">
       <form method="post" action="">
           <button name="submit2" type="submit" class="btn btn-default" style="background-color: #06861a; color: yellow;">RETURNED</button> 
                       &nbsp&nbsp
           <button name="submit3" type="submit" class="btn btn-default" style="background-color: red; color: yellow;">EXPIRED</button>
       </form>
       </div>
-      <div style="float: right;padding-top: 10px;">
-        
-        <?php 
-        $var=0;
-          $result=mysqli_query($db,"SELECT * FROM `fine` where username='$_SESSION[login_user]' and status='not paid' ;");
-          while($r=mysqli_fetch_assoc($result))
-          {
-            $var=$var+$r['fine'];
-          }
-          $var2=$var+$_SESSION['fine'];
 
-         ?>
-        <h3>Your fine is: 
-          <?php
-            echo "$ ".$var2;
-          ?>
-        </h3>
-      </div>
-<br><br><br><br>
+          <div class="srch" >
+          <br>
+          <form method="post" action="" name="form1">
+            <input type="text" name="username" class="form-control" placeholder="Username" required=""><br>
+            <input type="text" name="bid" class="form-control" placeholder="BID" required=""><br>
+            <button class="btn btn-default" name="submit" type="submit">Submit</button><br><br>
+          </form>
+        </div>
         <?php
+
+        if(isset($_POST['submit']))
+        {
+
+          $res=mysqli_query($db,"SELECT * FROM `issue_book` where username='$_POST[username]' and bid='$_POST[bid]' ;");
+      
+      while($row=mysqli_fetch_assoc($res))
+      {
+        $d= strtotime($row['return']);
+        $c= strtotime(date("Y-m-d"));
+        $diff= $c-$d;
+
+        if($diff>=0)
+        {
+          $day= floor($diff/(60*60*24)); 
+          $fine= $day*.10;
+        }
       }
+          $x= date("Y-m-d"); 
+          mysqli_query($db,"INSERT INTO `fine` VALUES ('$_POST[username]', '$_POST[bid]', '$x', '$day', '$fine','not paid') ;");
+
+
+          $var1='<p style="color:yellow; background-color:green;">RETURNED</p>';
+          mysqli_query($db,"UPDATE issue_book SET approve='$var1' where username='$_POST[username]' and bid='$_POST[bid]' ");
+
+          mysqli_query($db,"UPDATE books SET quantity = quantity+1 where bid='$_POST[bid]' ");
+          
+        }
+      }
+    
+    $c=0;
 
       
          $ret='<p style="color:yellow; background-color:green;">RETURNED</p>';
@@ -195,18 +215,18 @@ th,td
         if(isset($_POST['submit2']))
         {
           
-        $sql="SELECT student.username,roll,books.bid,name,authors,edition,approve,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='$ret' and issue_book.username ='$_SESSION[login_user]'  ORDER BY `issue_book`.`return` DESC";
+        $sql="SELECT student.username,roll,books.bid,name,authors,edition,approve,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='$ret' ORDER BY `issue_book`.`return` DESC";
         $res=mysqli_query($db,$sql);
 
         }
         else if(isset($_POST['submit3']))
         {
-        $sql="SELECT student.username,roll,books.bid,name,authors,edition,approve,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='$exp' and issue_book.username ='$_SESSION[login_user]' ORDER BY `issue_book`.`return` DESC";
+        $sql="SELECT student.username,roll,books.bid,name,authors,edition,approve,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='$exp' ORDER BY `issue_book`.`return` DESC";
         $res=mysqli_query($db,$sql);
         }
         else
         {
-        $sql="SELECT student.username,roll,books.bid,name,authors,edition,approve,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve !='' and issue_book.approve !='Yes'  and issue_book.username ='$_SESSION[login_user]' ORDER BY `issue_book`.`return` DESC";
+        $sql="SELECT student.username,roll,books.bid,name,authors,edition,approve,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve !='' and issue_book.approve !='Yes' ORDER BY `issue_book`.`return` DESC";
         $res=mysqli_query($db,$sql);
         }
 

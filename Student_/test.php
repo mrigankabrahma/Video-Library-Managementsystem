@@ -1,103 +1,84 @@
 <?php
- include "connection.php";
-
+	include "navbar.php";
+	include "connection.php";
 ?>
-<!DOCTYPE html>	 
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Books</title>
-    <style type="text/css">
+	<title>edit profile</title>
+	<style type="text/css">
+		.form-control
+		{
+			width:250px;
+			height: 38px;
+		}
+		.form1
+		{
+			margin:0 540px;
+		}
+		label
+		{
+			color: white;
+		}
 
-.srch
-{
-    padding-left:1000px;
-}
+	</style>
+</head>
 
-    </style>
-    </head>
-    <body>
-    <!--____________________________________search bar________________________-->
+<body style="background-color: #004528;">
 
-    <div class="srch">
-      <form class="navbar-form" method="post" name="form1">
-    
-       <input  type="text" name="search" placeholder="Search Your Books.." required="">
-       <button  style="background-color:brown;" type="submit" name="submit" class="btn btn-default">
-       <span class="glyphicon glyphicon-search"></span>
-       </button>
-       </form>
-   </div>
-<h2>List Of Books</h2>
-<?php
+	<h2 style="text-align: center;color: #fff;">Edit Information</h2>
+	<?php
+	
+	    $sql = "SELECT * FROM admin WHERE username='$_SESSION[login_user]'";
+		$result = mysqli_query($db,$sql) or die (mysql_error()); 
+		while ($row = mysqli_fetch_assoc($result))
+		{   
+    			$first=$row['first'];
+    			$last=$row['last'];
+			    $Username=$row['username'];
+			    $Password=$row['password'];
+			    $email=$row['email'];
+			    $contact=$row['contact'];
 
-if(isset($_POST['submit']))
-{
-   $q=mysqli_query($db,"SELECT * from books where name like '%$_POST[search]%' "); 
+			}
 
-   if(mysqli_num_rows($q)==0)
-   {
-     echo " Sorry No Books Found,Try Searching Again.";
-   }
-   else
-   {
-     echo "<table class='table table-bordered table-hover' >";
-      echo "<tr style='background-color: brown;'>";
-        echo "<th>";  echo "ID" ;echo "</th>";
-        echo "<th>";  echo " Book-Name" ;echo "</th>";
-        echo "<th>";  echo "Author-Name" ;echo "</th>";
-        echo "<th>";  echo "Edition" ;echo "</th>";
-        echo "<th>";  echo "Status" ;echo "</th>";
-        echo "<th>";  echo "Quantity" ;echo "</th>";
-        echo "<th>";  echo "Department" ;echo "</th>";
-    echo"</tr>"; 
-    while($row=mysqli_fetch_assoc($q))
-      {
-        echo "<tr>";
-        echo "<td>"; echo $row['bid']; echo "</td>";
-        echo "<td>"; echo $row['name']; echo "</td>";
-        echo "<td>"; echo $row['authors']; echo "</td>";
-        echo "<td>"; echo $row['edition']; echo "</td>";
-        echo "<td>"; echo $row['status']; echo "</td>";
-        echo "<td>"; echo $row['quantity']; echo "</td>";
-        echo "<td>"; echo $row['department']; echo "</td>";
+ 				echo "<div style='text-align: center'>
+ 					<img class='img-circle profile-img' height=110 width=120 src='images/".$_SESSION['pic']."'>
+ 				</div>";
+ 			?>
 
-        echo "</tr>";
-      }
-    echo "</table>";
-   }
-}
-/* if button is not pressed.*/
-else
-{
-  
-       $res=mysqli_query($db,"SELECT * FROM `books`ORDER BY `books`.`name` ASC;");
+	<div class="profile_info" style="text-align: center;">
+		<span style="color: white;">Welcome,</span>	
+		<h4 style="color: white;"><?php echo $_SESSION['login_user']; ?></h4>
+	</div><br><br>
+	
+	<div class="form1">
+		<form action="" method="post" enctype="multipart/form-data">
 
-       echo "<table class='table table-bordered table-hover' >";
-      echo "<tr style='background-color: brown;'>";
-        echo "<th>";  echo "ID" ;echo "</th>";
-        echo "<th>";  echo " Book-Name" ;echo "</th>";
-        echo "<th>";  echo "Author-Name" ;echo "</th>";
-        echo "<th>";  echo "Edition" ;echo "</th>";
-        echo "<th>";  echo "Status" ;echo "</th>";
-        echo "<th>";  echo "Quantity" ;echo "</th>";
-        echo "<th>";  echo "Department" ;echo "</th>";
-    echo"</tr>"; 
-    while($row=mysqli_fetch_assoc($res))
-      {
-        echo "<tr>";
-        echo "<td>"; echo $row['bid']; echo "</td>";
-        echo "<td>"; echo $row['name']; echo "</td>";
-        echo "<td>"; echo $row['authors']; echo "</td>";
-        echo "<td>"; echo $row['edition']; echo "</td>";
-        echo "<td>"; echo $row['status']; echo "</td>";
-        echo "<td>"; echo $row['quantity']; echo "</td>";
-        echo "<td>"; echo $row['department']; echo "</td>";
+		<input class="form-control" type="file" name="file">
 
-        echo "</tr>";
-      } 
-    echo "</table>"; 
+		<label><h4><b>First Name: </b></h4></label>
+		<input class="form-control" type="text" name="first" value="<?php echo $first; ?>">
 
-}
-   ?>   
+		<label><h4><b>Last Name</b></h4></label>
+		<input class="form-control" type="text" name="last" value="<?php echo $last; ?>">
+
+		<label><h4><b>Username</b></h4></label>
+		<input class="form-control" type="text" name="username" value="<?php echo $username; ?>">
+
+		<label><h4><b>Password</b></h4></label>
+		<input class="form-control" type="text" name="password" value="<?php echo $password; ?>">
+
+		<label><h4><b>Email</b></h4></label>
+		<input class="form-control" type="text" name="email" value="<?php echo $email; ?>">
+
+		<label><h4><b>Contact No</b></h4></label>
+		<input class="form-control" type="text" name="contact" value="<?php echo $contact; ?>">
+
+		<br>
+		<div style="padding-left: 100px;">
+			<button class="btn btn-default" type="submit" name="submit">save</button></div>
+	</form>
+</div>
 </body>
-</html> 
+</html>
