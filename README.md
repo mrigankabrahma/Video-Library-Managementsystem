@@ -16,3 +16,8 @@ It contains the data entered by user and video related data in seperate tables.
 # HELPDESK
 
 ![3github](https://user-images.githubusercontent.com/83169520/203152551-5f853437-ebac-4bed-9c69-c321c11a64f6.jpeg)
+
+# Uploading Videos
+
+![d1862bf2-7a2e-4ead-a67a-95cbcaf4ee9a](https://user-images.githubusercontent.com/76396165/203255266-21f2aaef-d010-4027-890d-c4c5c239cbf1.jpg)
+![2574fcab-c3c2-460d-a988-6baf2a7bfa64](https://user-images.githubusercontent.com/76396165/203255277-c0346261-cc31-40ec-a504-6b64a4d9b5f3.jpg)
