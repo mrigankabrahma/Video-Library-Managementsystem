@@ -1,6 +1,6 @@
 # Video-Library-Managementsystem
 
-Video- Library Management system is a video storing application which is built using HTML CSS Php framework hack Javascript.
+Video- Library Management system is a video storing application which is built using HTML CSS Php and  Javascript.
 
 It contains functionality of login signup uploading videos by admin, upload history, helpdesk.
 
